@@ -12,10 +12,10 @@
                 <i class="el-icon-message"></i>系统信息管理</template>
 
               <el-menu-item index="1-1">
-                <router-link to="/emp">员工管理</router-link>
+                <router-link to="/emp" style="text-decoration: none;">员工管理</router-link>
               </el-menu-item>
               <el-menu-item index="1-2">
-                <router-link to="/dept">部门管理</router-link>
+                <router-link to="/dept" style="text-decoration: none;">部门管理</router-link>
               </el-menu-item>
             </el-submenu>
           </el-menu>
@@ -152,5 +152,8 @@ export default {
 /* 定义表单项的通用间距样式 */
 .form-item-margin {
   margin-left: 20px;
+}
+::v-deep a.router-link {
+    text-decoration: none;
 }
 </style>
