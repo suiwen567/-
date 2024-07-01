@@ -2,18 +2,21 @@
   <div>
     <el-container style="height: 700px; border: 1px solid #eee">
       <el-header style="font-size: 40px; background-color: rgb(238, 241, 246)"
-        >tlias 智能学习辅助系统</el-header
-      >
+        >tlias 智能学习辅助系统</el-header>
+
       <el-container>
-        <el-aside width="200px">
+        <el-aside width="230px" style="border: 1px solid #eee">
           <el-menu :default-openeds="['1', '3']">
             <el-submenu index="1">
-              <template slot="title"
-                ><i class="el-icon-message"></i>系统信息管理</template
-              >
+              <template slot="title">
+                <i class="el-icon-message"></i>系统信息管理</template>
 
-              <el-menu-item index="1-1">部门管理</el-menu-item>
-              <el-menu-item index="1-2">员工管理</el-menu-item>
+              <el-menu-item index="1-1">
+                <router-link to="/emp">员工管理</router-link>
+              </el-menu-item>
+              <el-menu-item index="1-2">
+                <router-link to="/dept">部门管理</router-link>
+              </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>
@@ -47,22 +50,34 @@
             </el-form-item>
           </el-form>
           <!-- 表格 -->
-          <el-table :data="tableData" border>
+          <!-- 其中prop指定数据属性名称，label指定显示给用户的标签。 -->
+          <el-table :data="tableData" border="">
             <el-table-column
               prop="name"
               label="姓名"
               width="180"
             ></el-table-column>
-            <el-table-column
-              prop="image"
+            <el-table-column          
               label="图像"
               width="180"
-            ></el-table-column>
-            <el-table-column
-              prop="gender"
+            >
+            <template slot-scope="scope">           
+            
+              <img :src="scope.row.image" width="100px" height="70px">
+
+            </template>
+          
+          </el-table-column>
+            <el-table-column     
               label="性别"
-              width="140"
-            ></el-table-column>
+              width="140"           
+            > 
+            <!-- 插槽标签,放在列标签下，通过scope.row.gender来确定json数据 -->
+            <template slot-scope="scope">
+            
+              {{scope.row.gender==1?'男':'女'}}
+            </template>
+          </el-table-column>
             <el-table-column
               prop="job"
               label="职位"
@@ -100,6 +115,8 @@
 </template>
 
 <script>
+
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -122,6 +139,11 @@ export default {
       alert("查询数据信息");
     },
   },
+  mounted(){
+    axios.get("https://mock.apifox.cn/m1/3128855-0-default/emp/list").then((result)=>{
+      this.tableData=result.data.data;
+    });
+  }
 };
 </script>
 
