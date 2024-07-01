@@ -1,24 +1,4 @@
 # vue-project
+这是一个简易的前端人员管理页面，部门管理
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+搭建的是Vue工程化前端，源代码在src文件夹,   .vue文件中
